@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import serverless from 'serverless-http';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 
@@ -12,11 +11,13 @@ import orderRouter from './routes/orderRoute.js';
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Connect MongoDB
+// Connect to MongoDB
 connectDB();
 
 // Routes
@@ -26,15 +27,17 @@ app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
 app.use('/images', express.static('uploads'));
 
-// Base route
+// Root route
 app.get('/', (req, res) => {
   res.send('API Working');
 });
 
-// 404 handler
+// 404 fallback
 app.use((req, res) => {
   res.status(404).json({ message: 'API route not found' });
 });
 
-// Export serverless handler for Vercel
-export const handler = serverless(app);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
