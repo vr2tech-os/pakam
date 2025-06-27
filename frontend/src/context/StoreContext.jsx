@@ -7,23 +7,25 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [food_list, setFoodList] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const url = import.meta.env.VITE_API_URL; // ✅ Loads from .env
+
+  // ✅ Correct base URL — ends at "/api"
+  const url = import.meta.env.VITE_API_URL;
 
   // 🔄 Fetch all food items from backend
   const fetchFoodList = async () => {
     try {
-      const res = await axios.get(`${url}/api/food/list`);
+      const res = await axios.get(`${url}/food/list`);
       setFoodList(res.data.data || []);
     } catch (err) {
       console.error("Failed to fetch food list:", err);
     }
   };
 
-  // 🔄 Load cart data from backend and convert it to object format
+  // 🔄 Load cart data from backend
   const loadCartData = async () => {
     if (!token) return;
     try {
-      const res = await axios.post(`${url}/api/cart/get`, {}, {
+      const res = await axios.post(`${url}/cart/get`, {}, {
         headers: { token },
       });
 
@@ -48,7 +50,7 @@ const StoreContextProvider = (props) => {
 
     if (token) {
       try {
-        await axios.post(`${url}/api/cart/add`, { itemId, quantity }, {
+        await axios.post(`${url}/cart/add`, { itemId, quantity }, {
           headers: { token },
         });
       } catch (err) {
@@ -57,7 +59,7 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  // ➖ Remove one quantity from cart
+  // ➖ Remove one quantity
   const removeFromCart = async (itemId) => {
     setCartItems((prev) => {
       const updatedQty = (prev[itemId] || 0) - 1;
@@ -70,7 +72,7 @@ const StoreContextProvider = (props) => {
 
     if (token) {
       try {
-        await axios.post(`${url}/api/cart/remove`, { itemId }, {
+        await axios.post(`${url}/cart/remove`, { itemId }, {
           headers: { token },
         });
       } catch (err) {
@@ -88,7 +90,7 @@ const StoreContextProvider = (props) => {
 
     if (token) {
       try {
-        await axios.post(`${url}/api/cart/remove`, { itemId }, {
+        await axios.post(`${url}/cart/remove`, { itemId }, {
           headers: { token },
         });
       } catch (err) {
@@ -97,7 +99,7 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  // 💰 Calculate total cart amount
+  // 💰 Total cart amount
   const getTotalCartAmount = () => {
     return Object.entries(cartItems).reduce((total, [itemId, qty]) => {
       const item = food_list.find((food) => food._id === itemId);
@@ -105,19 +107,18 @@ const StoreContextProvider = (props) => {
     }, 0);
   };
 
-  // 🔁 Fetch food list once on first load
+  // 🔁 Fetch food list on load
   useEffect(() => {
     fetchFoodList();
   }, []);
 
-  // 🔁 Load cart when token changes (on login)
+  // 🔁 Load cart when token changes
   useEffect(() => {
     if (token) {
       loadCartData();
     }
   }, [token]);
 
-  // Provide context values
   const contextValue = {
     food_list,
     cartItems,
