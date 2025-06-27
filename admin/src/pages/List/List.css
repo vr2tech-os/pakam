@@ -1,0 +1,128 @@
+.list {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 20px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.list > p {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+}
+
+.list-table {
+  width: 100%;
+}
+
+/* Desktop table layout */
+.list-table-format {
+  display: grid;
+  grid-template-columns: 70px 2fr 1.5fr 1fr 2fr 2fr 2.5fr 60px;
+  gap: 15px;
+  padding: 15px 20px;
+  border: 1px solid #e2e2e2;
+  font-size: 14px;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.list-table-format:hover {
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+}
+
+.list-table-format.title {
+  background-color: #f9f9f9;
+  font-weight: 700;
+  color: #555;
+  border-bottom: 2px solid #ddd;
+  cursor: default;
+}
+
+.list-table-format img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.list-table-format p {
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.list-table-format p span {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.list-table-format p span:last-child {
+  margin-bottom: 0;
+}
+
+.cursor {
+  cursor: pointer;
+  font-size: 22px;
+  color: #e74c3c;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.cursor:hover {
+  color: #c0392b;
+}
+
+/* FAQ style */
+.list-table-format p span b {
+  color: #222;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .list-table-format.title {
+    display: none;
+  }
+
+  .list-table-format {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+  }
+
+  .list-table-format img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+  }
+
+  .list-table-format p {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .list-table-format p span {
+    margin-bottom: 4px;
+  }
+
+  .cursor {
+    font-size: 24px;
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,22 @@
+.navbar {
+  position: fixed;            /* ✅ Stick it to the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;     /* ✅ Ensure it doesn't blend with background */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 4%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Optional: subtle shadow */
+  z-index: 999;               /* ✅ Make sure it's above other content */
+}
+
+/* ✅ Fix: target the logo and profile image correctly */
+.logo {
+  width: max(10%, 80px);
+}
+
+.profile {
+  width: 40px;
+}

@@ -1,0 +1,287 @@
+.food-detail-page {
+  padding: 60px 5%;
+  background-color: #fff;
+}
+
+/* Row 1 */
+.food-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.food-detail-image-section {
+  flex: 1 1 100px;
+  max-width: 450px;
+}
+
+.food-detail-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.food-detail-content {
+  flex: 1 1 300px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.food-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.food-description {
+  font-size: 16px;
+  color: #666;
+}
+
+.food-price {
+  font-size: 22px;
+  font-weight: 600;
+  color: #eb9420;
+}
+
+.food-price span {
+  font-size: 16px;
+  color: #999;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity-controls button {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.min-order-note {
+  font-size: 14px;
+  color: #888;
+}
+
+.add-button {
+  padding: 12px 24px;
+  background-color: #eb9420;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Row 2 */
+.info-table {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Single wide block */
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-cell {
+  background-color: #fafafa;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.info-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.info-tabs button {
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.info-tabs button:hover {
+  background-color: #ddd;
+}
+
+.info-tabs .active-tab {
+  background-color: #eb9420;
+  color: white;
+  font-weight: bold;
+}
+
+.info-content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+/* Show/hide blocks based on screen size */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+/* Suggested Items Section */
+.suggested-items-section {
+  margin-top: 40px;
+  padding: 0 5%;
+}
+
+.suggested-items-section h3 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Grid Layout */
+.suggested-items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+/* Suggested Item Card */
+.suggested-card {
+  width: 100%;
+  max-width: 260px;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.suggested-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image */
+.suggested-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Content */
+.suggested-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggested-card-content h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+.suggested-card-content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.suggested-card-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #eb9420;
+}
+
+/* Optional: Add Button */
+.add-button-circle {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: #eb9420;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.suggested-card.selected {
+  border: 2px solid #e04c00;
+  box-shadow: 0 0 0 3px rgba(224, 76, 0, 0.2);
+}
+.suggested-card.selected {
+  border: 2px solid green;
+  background-color: #f0fff0;
+}
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.add-button.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.proceed-button {
+  background-color: #eb9420; /* orange tone */
+}
+
+
+@media (max-width: 750px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+
+  .info-cell {
+    margin-bottom: 20px;
+  }
+
+  .info-cell p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 750px) {
+  .food-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .food-detail-image-section{
+    margin-bottom: 0px;
+  }
+  .info-table {
+    grid-template-columns: 1fr;
+  }
+}

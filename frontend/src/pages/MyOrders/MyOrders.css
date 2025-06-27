@@ -1,0 +1,143 @@
+.my-orders {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.my-orders h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 24px;
+}
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.order-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.order-summary {
+  flex: 1 1 200px;
+  font-size: 14px;
+  color: #333;
+  min-width: 200px;
+}
+
+.order-date {
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+.order-price,
+.order-count,
+.order-status {
+  font-size: 14px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d9534f;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #d9534f;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.track-button {
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.track-button button {
+  background-color: #f8d7da;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: #721c24;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.track-button button:hover {
+  background-color: #f5c6cb;
+}
+
+/* ✅ Responsive tweaks */
+@media (max-width: 768px) {
+  .order-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .order-summary,
+  .order-price,
+  .order-count,
+  .order-status,
+  .track-button {
+    text-align: left;
+    min-width: 100%;
+  }
+
+  .track-button {
+    justify-content: flex-start;
+  }
+
+  .my-orders h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .order-summary {
+    font-size: 13px;
+  }
+
+  .order-price,
+  .order-count,
+  .order-status {
+    font-size: 13px;
+  }
+
+  .track-button button {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}

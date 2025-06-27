@@ -1,0 +1,119 @@
+.add {
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  color: #6d6d6d;
+  font-size: 16px;
+}
+
+.add form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Image Upload */
+.add-img-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.add-img-upload img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Text Inputs */
+.add-product-name,
+.add-product-description,
+.add-product-ingredients,
+.add-product-benefits {
+  width: max(40%, 280px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.add-product-name input,
+.add-product-description textarea,
+.add-product-ingredients textarea,
+.add-product-benefits textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+/* Category & Price */
+.add-category-price {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.add-category,
+.add-price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.add-category select,
+.add-price input {
+  max-width: 150px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Remove spinner on number input */
+.add-category-price input[type=number]::-webkit-inner-spin-button,
+.add-category-price input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.add-category-price input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* FAQ Section */
+.add-faq-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: max(40%, 280px);
+}
+.add-faq-section input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Submit Button */
+.add-btn {
+  max-width: 150px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-btn:hover {
+  background-color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .add {
+    width: 90%;
+  }
+
+  .add-category-price {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
