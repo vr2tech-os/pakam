@@ -10,6 +10,8 @@ const StoreContextProvider = (props) => {
 
   // ✅ Correct base URL — ends at "/api"
   const url = import.meta.env.VITE_API_URL;
+  const baseURL = import.meta.env.VITE_BASE_URL;
+
 
   // 🔄 Fetch all food items from backend
   const fetchFoodList = async () => {
