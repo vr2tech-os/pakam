@@ -5,13 +5,14 @@ import './Verify.css';
 
 const Verify = () => {
   const baseURL = import.meta.env.VITE_BASE_URL;
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
 
-  const query = new URLSearchParams(useLocation().search);
   const razorpay_order_id = query.get("razorpay_order_id");
   const razorpay_payment_id = query.get("razorpay_payment_id");
   const razorpay_signature = query.get("razorpay_signature");
   const orderId = query.get("orderId");
-  const userName = decodeURIComponent(query.get("name") || "Customer");
+  const userName = query.get("name") ? decodeURIComponent(query.get("name")) : "Customer";
   const urlSuccess = query.get("success");
 
   const [success, setSuccess] = useState(null);
@@ -51,7 +52,7 @@ const Verify = () => {
           <>
             <img src="/payment_success.png" alt="Success" className="verify-img" />
             <h2>
-              Hi {userName}! <br />
+              Hi {userName}!<br />
               Thank you, your order has been placed successfully.
             </h2>
             <p><strong>Order ID:</strong> {orderId}</p>
