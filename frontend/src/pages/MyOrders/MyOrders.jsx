@@ -42,11 +42,10 @@ const MyOrders = () => {
           {orders.map((order, index) => {
             const itemSummary = order.items.map(item => item.name).join(', ');
             const totalQuantity = order.items.reduce((total, item) => total + item.quantity, 0);
-            const orderDate = new Date(order.createdAt).toLocaleString('en-IN', {
+            const orderDate = new Date(order.createdAt || order.date).toLocaleString('en-IN', {
               dateStyle: 'medium',
               timeStyle: 'short',
             });
-
             return (
               <div key={index} className="order-row">
                 <img src={assets.parcel_icon} alt="parcel" className="order-icon" />
