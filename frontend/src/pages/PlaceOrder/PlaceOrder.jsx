@@ -1,4 +1,3 @@
-// PlaceOrder.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
@@ -29,12 +28,9 @@ const PlaceOrder = () => {
     setIsPlacingOrder(true);
 
     try {
-      let orderItems = [];
-      food_list.forEach((item) => {
-        if (cartItems[item._id] > 0) {
-          orderItems.push({ ...item, quantity: cartItems[item._id] });
-        }
-      });
+      const orderItems = food_list
+        .filter(item => cartItems[item._id] > 0)
+        .map(item => ({ ...item, quantity: cartItems[item._id] }));
 
       const orderData = {
         address: data,
@@ -42,7 +38,7 @@ const PlaceOrder = () => {
         amount: getTotalCartAmount() + 2
       };
 
-      const res = await axios.post(`${url}/api/order/place`, orderData, {
+      const res = await axios.post(`${url}/order/place`, orderData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -59,22 +55,22 @@ const PlaceOrder = () => {
         order_id: razorpayOrderId,
         handler: async function (response) {
           try {
-            const verifyRes = await axios.post(`${url}/api/order/verify`, {
+            const verifyRes = await axios.post(`${url}/order/verify`, {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              orderId, // ✅ Only orderId passed now
+              orderId,
               address: data,
               items: orderItems,
               amount: getTotalCartAmount() + 2
             });
 
-            if (verifyRes.data.success) {
-              const fullName = encodeURIComponent(`${data.firstName} ${data.lastName}`);
-              window.location.href = `/verify?success=true&orderId=${verifyRes.data.orderId}&name=${fullName}`;
-            } else {
-              window.location.href = `/verify?success=false`;
-            }
+            const fullName = encodeURIComponent(`${data.firstName} ${data.lastName}`);
+            const redirectURL = verifyRes.data.success
+              ? `/verify?success=true&orderId=${verifyRes.data.orderId}&name=${fullName}`
+              : `/verify?success=false`;
+
+            window.location.href = redirectURL;
           } catch (err) {
             console.error("Payment verification failed:", err);
             window.location.href = `/verify?success=false`;
