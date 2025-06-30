@@ -5,7 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 
 const Cart = () => {
-  const { cartItems, food_list, removeItemCompletely, getTotalCartAmount, url, token } = useContext(StoreContext);
+  const {
+    cartItems,
+    food_list,
+    removeItemCompletely,
+    getTotalCartAmount,
+    baseURL,
+    token,
+  } = useContext(StoreContext);
   const navigate = useNavigate();
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
@@ -35,12 +42,20 @@ const Cart = () => {
             return (
               <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url + '/images/' + item.image} alt={item.name} />
+                  <img
+                    src={`${baseURL}/images/${item.image}`}
+                    alt={item.name}
+                  />
                   <p>{item.name}</p>
                   <p>₹{item.price}/kg</p>
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
-                  <p className='cross' onClick={() => removeItemCompletely(item._id)}>X</p>
+                  <p
+                    className='cross'
+                    onClick={() => removeItemCompletely(item._id)}
+                  >
+                    X
+                  </p>
                 </div>
                 <hr />
               </div>
