@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Verify.css';
 
 const Verify = () => {
-  const baseURL = import.meta.env.VITE_BASE_URL; // ✅ dynamic backend URL
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const query = new URLSearchParams(useLocation().search);
   const razorpay_order_id = query.get("razorpay_order_id");
@@ -19,18 +19,14 @@ const Verify = () => {
   useEffect(() => {
     const verifyPayment = async () => {
       try {
-        const response = await axios.post(`${baseURL}/api/order/verify`, {
+        const response = await axios.post(`${baseURL}/order/verify`, {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,
           orderId,
         });
 
-        if (response.data.success) {
-          setSuccess(true);
-        } else {
-          setSuccess(false);
-        }
+        setSuccess(response.data.success === true);
       } catch (error) {
         console.error("Verification Error:", error);
         setSuccess(false);
