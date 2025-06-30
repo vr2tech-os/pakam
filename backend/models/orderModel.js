@@ -11,6 +11,8 @@ const orderSchema = new mongoose.Schema({
   payment: { type: Boolean, default: false },
   paymentId: { type: String },
   orderId: { type: String }
+}, {
+  timestamps: true // ✅ This adds `createdAt` and `updatedAt`
 });
 
 const orderModel = mongoose.models.order || mongoose.model('order', orderSchema);
