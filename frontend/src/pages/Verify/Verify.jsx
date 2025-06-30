@@ -4,20 +4,22 @@ import axios from 'axios';
 import './Verify.css';
 
 const Verify = () => {
+  const baseURL = import.meta.env.VITE_BASE_URL; // ✅ dynamic backend URL
+
   const query = new URLSearchParams(useLocation().search);
   const razorpay_order_id = query.get("razorpay_order_id");
   const razorpay_payment_id = query.get("razorpay_payment_id");
   const razorpay_signature = query.get("razorpay_signature");
   const orderId = query.get("orderId");
   const userName = decodeURIComponent(query.get("name") || "Customer");
-  const urlSuccess = query.get("success"); // get ?success=true from backend redirect
+  const urlSuccess = query.get("success");
 
-  const [success, setSuccess] = useState(null); // null = loading
+  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     const verifyPayment = async () => {
       try {
-        const response = await axios.post("http://localhost:4000/api/order/verify", {
+        const response = await axios.post(`${baseURL}/order/verify`, {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,
@@ -35,13 +37,12 @@ const Verify = () => {
       }
     };
 
-    // ✅ Priority: if success=true from backend, just show success
     if (urlSuccess === "true") {
       setSuccess(true);
     } else if (razorpay_order_id && razorpay_payment_id && razorpay_signature && orderId) {
-      verifyPayment(); // fallback if not already verified server-side
+      verifyPayment();
     } else {
-      setSuccess(false); // fallback: failed if nothing provided
+      setSuccess(false);
     }
   }, []);
 
