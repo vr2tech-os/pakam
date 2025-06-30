@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const FoodItem = ({ id, name, price, description, image, ingredients }) => {
-  const { cartItems, url } = useContext(StoreContext);
+  const { cartItems, url, baseURL } = useContext(StoreContext);
   const navigate = useNavigate();
 
   return (
