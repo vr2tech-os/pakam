@@ -1,19 +1,19 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDB } from './config/db.js';
+import { connectDB } from '../config/db.js';
 
-import foodRouters from './routes/foodRoute.js';
-import userRouter from './routes/userRoute.js';
-import cartRouter from './routes/cartRoute.js';
-import orderRouter from './routes/orderRoute.js';
+import foodRouters from '../routes/foodRoute.js';
+import userRouter from '../routes/userRoute.js';
+import cartRouter from '../routes/cartRoute.js';
+import orderRouter from '../routes/orderRoute.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors({
-  origin: 'https://pakam-frontend.vercel.app/', // your frontend
+  origin: 'https://pakam-frontend.vercel.app', // ✅ also remove trailing slash
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
@@ -25,7 +25,7 @@ app.use('/api/food', foodRouters);
 app.use('/api/user', userRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
-app.use('/images', express.static('uploads'));
+app.use('/images', express.static('../uploads')); // ✅ relative path fixed
 
 app.get('/', (req, res) => {
   res.send('API is working');
