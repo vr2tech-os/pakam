@@ -19,7 +19,7 @@ const Verify = () => {
   useEffect(() => {
     const verifyPayment = async () => {
       try {
-        const response = await axios.post(`${baseURL}/order/verify`, {
+        const response = await axios.post(`${baseURL}/api/order/verify`, {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,
