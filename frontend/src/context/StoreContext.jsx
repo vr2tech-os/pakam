@@ -12,7 +12,6 @@ const StoreContextProvider = (props) => {
   const url = import.meta.env.VITE_API_URL;
   const baseURL = import.meta.env.VITE_BASE_URL;
 
-
   // 🔄 Fetch all food items from backend
   const fetchFoodList = async () => {
     try {
@@ -28,7 +27,7 @@ const StoreContextProvider = (props) => {
     if (!token) return;
     try {
       const res = await axios.post(`${url}/cart/get`, {}, {
-        headers: { token },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (res.data.success && Array.isArray(res.data.cartItems)) {
@@ -53,7 +52,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(`${url}/cart/add`, { itemId, quantity }, {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         });
       } catch (err) {
         console.error("Add to cart failed:", err);
@@ -75,7 +74,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(`${url}/cart/remove`, { itemId }, {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         });
       } catch (err) {
         console.error("Remove from cart failed:", err);
@@ -93,7 +92,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(`${url}/cart/remove`, { itemId }, {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         });
       } catch (err) {
         console.error("Remove item completely failed:", err);
