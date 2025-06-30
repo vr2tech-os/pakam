@@ -67,7 +67,7 @@ const PlaceOrder = () => {
 
             const fullName = encodeURIComponent(`${data.firstName} ${data.lastName}`);
             const redirectURL = verifyRes.data.success
-              ? `/verify?success=true&orderId=${verifyRes.data.orderId}&name=${fullName}`
+              ? `/verify?razorpay_order_id=${response.razorpay_order_id}&razorpay_payment_id=${response.razorpay_payment_id}&razorpay_signature=${response.razorpay_signature}&orderId=${verifyRes.data.orderId}&name=${fullName}`
               : `/verify?success=false`;
 
             window.location.href = redirectURL;
