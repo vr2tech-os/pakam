@@ -130,6 +130,7 @@ const StoreContextProvider = (props) => {
     getTotalCartAmount,
     setCartItems,
     url,
+    baseURL,
     token,
     setToken,
   };
