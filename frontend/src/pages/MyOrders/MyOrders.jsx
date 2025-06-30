@@ -53,14 +53,15 @@ const MyOrders = () => {
                 <div className="order-summary">
                   {itemSummary}
                   <div className="order-date">
-                    {new Date(order.date).toLocaleDateString('en-IN', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </div>
+                  {new Date(order.createdAt).toLocaleString('en-IN', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                </div>
+
 
                 </div>
                 <div className="order-price">Total Amount: ₹{order.amount}</div>
