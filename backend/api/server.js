@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'https://pkam-frontend.vercel.app', // your frontend
+  origin: 'https://pakam-frontend.vercel.app/', // your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
