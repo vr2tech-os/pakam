@@ -6,7 +6,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const FoodDetail = () => {
   const { _id } = useParams();
-  const { food_list, addToCart, url } = useContext(StoreContext);
+  const { food_list, addToCart, baseURL } = useContext(StoreContext); // ✅ use baseURL
   const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(3);
@@ -14,13 +14,11 @@ const FoodDetail = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [added, setAdded] = useState(false);
 
-  // Scroll to top when ID changes
   useEffect(() => {
     window.scrollTo(0, 0);
-    setAdded(false); // reset "Added" state when new item is loaded
+    setAdded(false);
   }, [_id]);
 
-  // Loading state until food_list is populated
   if (!food_list || food_list.length === 0) {
     return <div className="food-detail-page">Loading...</div>;
   }
@@ -29,14 +27,13 @@ const FoodDetail = () => {
   if (!item) return <div className="food-detail-page">Item not found.</div>;
 
   const handleAddToCart = () => {
-  if (quantity >= 3) {
-    addToCart(_id, quantity); // ✅ Corrected
-    setAdded(true);
-  } else {
-    alert('Minimum 3 kg required to add to cart.');
-  }
-};
-
+    if (quantity >= 3) {
+      addToCart(_id, quantity);
+      setAdded(true);
+    } else {
+      alert('Minimum 3 kg required to add to cart.');
+    }
+  };
 
   const toggleSelectItem = (id) => {
     setSelectedItems(prev =>
@@ -53,7 +50,7 @@ const FoodDetail = () => {
       {/* Row 1: Image + Order Details */}
       <div className="food-detail-container">
         <div className="food-detail-image-section">
-          <img src={`${url}/images/${item.image}`} alt={item.name} className="food-detail-image" />
+          <img src={`${baseURL}/images/${item.image}`} alt={item.name} className="food-detail-image" />
         </div>
 
         <div className="food-detail-content">
@@ -163,7 +160,7 @@ const FoodDetail = () => {
               onClick={() => navigate(`/product/${suggested._id}`)}
             >
               <div style={{ position: 'relative' }}>
-                <img src={`${url}/images/${suggested.image}`} alt={suggested.name} />
+                <img src={`${baseURL}/images/${suggested.image}`} alt={suggested.name} />
                 <div
                   className="add-button-circle"
                   onClick={(e) => {
@@ -186,20 +183,19 @@ const FoodDetail = () => {
         </div>
 
         {selectedItems.length > 0 && (
-        <button
-          className="add-button"
-          style={{ marginTop: '24px' }}
-          onClick={() => {
-            selectedItems.forEach(id => {
-              addToCart(id, 3); // ✅ Correct way
-            });
-            navigate('/cart');
-          }}
-        >
-          Add Selected Items to Cart
-        </button>
-      )}
-
+          <button
+            className="add-button"
+            style={{ marginTop: '24px' }}
+            onClick={() => {
+              selectedItems.forEach(id => {
+                addToCart(id, 3);
+              });
+              navigate('/cart');
+            }}
+          >
+            Add Selected Items to Cart
+          </button>
+        )}
       </div>
     </div>
   );
