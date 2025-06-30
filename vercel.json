@@ -24,9 +24,6 @@
       "dest": "admin/index.html"
     },
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
       "dest": "frontend/index.html"
     }
