@@ -13,9 +13,7 @@ const FoodItem = ({ id, name, price, description, image, ingredients }) => {
   return (
     <div className='food-item'>
       <div className="food-item-image-container">
-        <img className='food-item-image' src={`${url}/images/${image}`} alt={name} />
-
-
+        <img className='food-item-image' src={`${baseURL}/images/${image}`} alt={name} />
 
         {/* Replaced cart counter with "Select" button */}
         <div className="add" onClick={() => navigate(`/product/${id}`)}>
