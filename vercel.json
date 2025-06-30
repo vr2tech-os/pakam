@@ -8,12 +8,20 @@
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build"
+    },
+    {
+      "src": "admin/package.json",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "backend/api/index.js"
+    },
+    {
+      "src": "/admin(/.*)?",
+      "dest": "admin/index.html"
     },
     {
       "handle": "filesystem"
