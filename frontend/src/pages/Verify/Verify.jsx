@@ -34,12 +34,13 @@ const Verify = () => {
       }
     };
 
-    if (urlSuccess === "true") {
-      setSuccess(true);
-    } else if (razorpay_order_id && razorpay_payment_id && razorpay_signature && orderId) {
+    // ✅ If user redirected with verification params, do backend verification
+    if (razorpay_order_id && razorpay_payment_id && razorpay_signature && orderId) {
       verifyPayment();
-    } else {
+    } else if (urlSuccess === "false") {
       setSuccess(false);
+    } else if (urlSuccess === "true") {
+      setSuccess(true); // fallback if payment already verified
     }
   }, []);
 
