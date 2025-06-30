@@ -1,20 +1,19 @@
 import express from 'express';
 import cors from 'cors';
-import serverless from 'serverless-http';
 import dotenv from 'dotenv';
-import { connectDB } from '../config/db.js';
+import { connectDB } from './config/db.js';
 
-import foodRouters from '../routes/foodRoute.js';
-import userRouter from '../routes/userRoute.js';
-import cartRouter from '../routes/cartRoute.js';
-import orderRouter from '../routes/orderRoute.js';
+import foodRouters from './routes/foodRoute.js';
+import userRouter from './routes/userRoute.js';
+import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderRoute.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors({
-  origin: 'https://pakam-frontend.vercel.app', 
+  origin: 'https://pkam-frontend.vercel.app', // your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
@@ -36,4 +35,7 @@ app.use((req, res) => {
   res.status(404).json({ message: 'API route not found' });
 });
 
-export const handler = serverless(app);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
